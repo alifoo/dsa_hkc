@@ -1,0 +1,25 @@
+# --- Build artifacts ---
+
+# ignore the entire build directory
+/build/
+
+# ignore compiled object, library, and executable files
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+myprogram
+
+# ignore CMake cache and temporary files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
