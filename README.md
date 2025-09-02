@@ -38,7 +38,7 @@ This will install `libdsa_hkc.a` into `/usr/local/lib` and `dsa_hkc.h` into `/us
 
 ---
 
-### ## How to Use (API Example)
+## How to Use
 
 Once the library is installed, you can include the header in your own C projects and link against it during compilation.
 
@@ -48,11 +48,26 @@ Once the library is installed, you can include the header in your own C projects
 #include <dsa_hkc.h>
 
 int main() {
-    int result = add(20, 22);
-    int squared_result = square(result);
+    // 1. Initialize the table
+    init_hash_table();
 
-    printf("The result is: %d\n", result);
-    printf("The squared result is: %d\n", squared_result);
+    // 2. Create some data
+    person marcos = {.name = "Marcos", .age = 18};
+    person rafa = {.name = "Rafa", .age = 20};
+
+    // 3. Insert data into the table
+    hash_table_insert(&marcos);
+    hash_table_insert(&rafa);
+    printf("Table after inserts:\n");
+    print_table();
+
+    // 4. Look up a person
+    person *tmp = hash_table_lookup("Marcos");
+    if (tmp == NULL) {
+        printf("\nMarcos was not found!\n");
+    } else {
+        printf("\nFound %s, age %d.\n", tmp->name, tmp->age);
+    }
 
     return 0;
 }
