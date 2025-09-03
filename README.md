@@ -1,10 +1,10 @@
 # DSA Hacking Club - C library for Data Structures and Algorithms
 
-[![Build Status](https://github.com/alifoo/dsa_hkc/actions/workflows/main.yml/badge.svg)](https://github.com/alifoo/dsa_hkc/actions)
-
 This is a collective library built to easily implement data structures and
 algorithms in C, made by two students of the Pontifical Catholic University of
 Paraná (PUCPR).
+
+Check the [documentation](https://alifoo.github.io/dsa_hkc_docs/) to see the currently implemented data structures and algorithms and understand how to use them.
 
 ## Requirements
 

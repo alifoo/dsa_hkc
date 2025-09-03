@@ -24,3 +24,5 @@ Makefile
 .idea/
 .DS_Store
 .cache/
+latex/
+html/
