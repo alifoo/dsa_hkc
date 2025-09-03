@@ -23,49 +23,59 @@ Clone the repository and use CMake to build the project.
 git clone https://github.com/alifoo/dsa_hkc.git
 cd dsa_hkc
 
-# 2. Create a build directory
+# 2. Configure and build the project
 mkdir build
 cd build
-
-# 3. Configure and build the project
 cmake ..
 make
 
-# 4. (Optional) Install the library system-wide
+# 3. Install the library system-wide
 sudo make install
 ```
-This will install `libdsa_hkc.a` into `/usr/local/lib` and `dsa_hkc.h` into `/usr/local/include`.
+The `install` command copies the library (`libdsa_hkc.a`), the main header (`dsa_hkc.h`), and the CMake configuration files to a standard location (`/usr/local/`), making the library available to other projects.
 
 ---
 
 ## How to Use
 
-Once the library is installed, you can include the header in your own C projects and link against it during compilation.
+Once the library is installed, you can use it in your own projects. Here are the two recommended methods.
 
-**`example.c`**
+### Method 1: Using CMake
+
+This is the easiest and most portable way to use the library. Create a `CMakeLists.txt` for your own project and use `find_package()` to automatically locate and link the library.
+
+**1. Your Project's `CMakeLists.txt`:**
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(MyAwesomeApp C)
+
+# Find the DsaHkc library
+find_package(DsaHkc 1.0 REQUIRED)
+
+# Add your executable
+add_executable(my_app main.c)
+
+# Link the library to your executable
+target_link_libraries(my_app PRIVATE DsaHkc::dsa_hkc)
+```
+
+**2. Your Project's `main.c`:**
 ```c
 #include <stdio.h>
 #include <dsa_hkc.h>
 
 int main() {
-    // 1. Initialize the table
+    // Initialize the table
     init_hash_table();
 
-    // 2. Create some data
+    // Create and insert data
     person marcos = {.name = "Marcos", .age = 18};
-    person rafa = {.name = "Rafa", .age = 20};
-
-    // 3. Insert data into the table
     hash_table_insert(&marcos);
-    hash_table_insert(&rafa);
-    printf("Table after inserts:\n");
     print_table();
 
-    // 4. Look up a person
+    // Look up data
     person *tmp = hash_table_lookup("Marcos");
-    if (tmp == NULL) {
-        printf("\nMarcos was not found!\n");
-    } else {
+    if (tmp != NULL) {
         printf("\nFound %s, age %d.\n", tmp->name, tmp->age);
     }
 
@@ -73,10 +83,25 @@ int main() {
 }
 ```
 
-**Compile your program:**
+**3. Build Your Project:**
+When you run CMake, you may need to provide a hint to help it find the library in `/usr/local`.
+
 ```bash
-# The -ldsa_hkc flag tells the compiler to link our library
-gcc example.c -ldsa_hkc -o my_app
+mkdir build
+cd build
+cmake -DCMAKE_PREFIX_PATH=/usr/local ..
+make
+./my_app
+```
+
+### Method 2: Manual Compilation (Using Flags)
+
+If you are not using CMake, you can compile your program by manually telling the compiler where to find the library's header and library files.
+
+```bash
+# Compile main.c, providing paths for the header (-I) and library (-L),
+# and linking the library (-l)
+gcc main.c -I/usr/local/include -L/usr/local/lib -ldsa_hkc -o my_app
 ```
 
 ---

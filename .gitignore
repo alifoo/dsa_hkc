@@ -23,3 +23,4 @@ Makefile
 .vscode/
 .idea/
 .DS_Store
+.cache/
