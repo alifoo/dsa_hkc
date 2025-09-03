@@ -20,7 +20,7 @@ Clone the repository and use CMake to build the project.
 
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/alifoo/dsa_hkc.git](https://github.com/alifoo/dsa_hkc.git)
+git clone https://github.com/alifoo/dsa_hkc.git
 cd dsa_hkc
 
 # 2. Create a build directory
