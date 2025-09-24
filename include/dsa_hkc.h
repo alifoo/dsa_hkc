@@ -12,5 +12,6 @@
 #define DSA_HKC_H
 
 #include "hashtable.h"
+#include "stack.h"
 
 #endif

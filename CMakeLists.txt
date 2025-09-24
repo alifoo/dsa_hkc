@@ -7,6 +7,7 @@ include(GNUInstallDirs) # lib, include, share etc...
 # 1. This creates a static library (libhacking_club_c.a)
 add_library(dsa_hkc STATIC
     src/hashtable.c
+    src/stack.c
 )
 
 add_library(DsaHkc::dsa_hkc ALIAS dsa_hkc)
@@ -21,9 +22,9 @@ target_include_directories(dsa_hkc
 )
 
 # 3. This defines the executable (create an executable named test from main.c)
-#add_executable(myprogram main.c)
+add_executable(test_main main.c)
 # 4. This links the lib to the executable.
-#target_link_libraries(myprogram PRIVATE dsa_hkc)
+target_link_libraries(test_main PRIVATE dsa_hkc)
 
 # 5. Generate a version file
 include(CMakePackageConfigHelpers)
