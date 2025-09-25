@@ -14,7 +14,7 @@ const char *person_get_key(const void *p) { return ((const person *)p)->name; }
 
 int main() {
     hashtable ht;
-    init_hash_table(&ht, 10, person_get_key);
+    init_hash_table(&ht, person_get_key, 10);
 
     person *alisson = malloc(sizeof(person));
     strcpy(alisson->name, "Alisson");
