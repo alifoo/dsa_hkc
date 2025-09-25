@@ -8,6 +8,7 @@ include(GNUInstallDirs) # lib, include, share etc...
 add_library(dsa_hkc STATIC
     src/hashtable.c
     src/stack.c
+    src/linkedlist.c
 )
 
 add_library(DsaHkc::dsa_hkc ALIAS dsa_hkc)
@@ -24,9 +25,11 @@ target_include_directories(dsa_hkc
 # 3. This defines the executable (create an executable named test from main.c)
 add_executable(example_stack example_stack.c)
 add_executable(example_hashtable example_hashtable.c)
+add_executable(example_linkedlist example_linkedlist.c)
 # 4. This links the lib to the executable.
 target_link_libraries(example_stack PRIVATE dsa_hkc)
 target_link_libraries(example_hashtable PRIVATE dsa_hkc)
+target_link_libraries(example_linkedlist PRIVATE dsa_hkc)
 
 # 5. Generate a version file
 include(CMakePackageConfigHelpers)
